@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Book Repo</title>
+    <h:outputStylesheet name="css/style.css"/>
+</h:head>
+<h:body>
+    <h1>Book Repo</h1>
+    <h:form>
+        <h:inputText value="#{bookController.titleFilter}"/>
+        <h:commandButton value="Search" action="#{bookController.updateBooks()}"/>
+        <br/>
+        <h:selectBooleanCheckbox value="#{bookController.exactMatch}" /> exact match
+        <h:dataTable value="#{bookController.booksDataModel}" var="book"
+                     styleClass="bookTable"
+                     headerClass="bookTableHeader"
+                     rowClasses="bookTableOddRow,bookTableEvenRow">
+            <h:column>
+                <f:facet name="header">Title</f:facet>
+                #{book.title}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Author</f:facet>
+                #{book.author}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Action</f:facet>
+                <h:commandButton value="Edit" action="#{bookController.editBook(book)}"/>
+                <h:commandButton value="Delete" action="#{bookController.removeBook(book)}"/>
+            </h:column>
+        </h:dataTable>
+        <h:commandButton value="Add Book" action="#{bookController.editNewBook()}"/>
+    </h:form>
+</h:body>
+</html>

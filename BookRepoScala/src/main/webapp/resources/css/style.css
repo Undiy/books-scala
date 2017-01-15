@@ -1,0 +1,26 @@
+.bookTable,
+.bookTableOddRow td, .bookTableEvenRow td{   
+   border-collapse:collapse;
+   border:1px solid #000000;   
+   text-align:center;
+   padding: 4px;
+}
+
+.bookTableHeader{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:6px;
+}
+
+.bookTableOddRow{
+   background:none repeat scroll 0 0 #FFFFFF;
+}
+
+.bookTableEvenRow{
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+form * {
+    margin: 2px;
+}

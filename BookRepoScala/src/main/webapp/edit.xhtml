@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Edit book - Book Repo</title>
+        <h:outputStylesheet name="css/style.css"/>
+    </h:head>
+    <h:body>
+        <h1>Edit book</h1>
+        <h:form>
+            Title:
+            <h:inputText value="#{bookController.book.title}"/>
+            <br/>
+            Author:
+            <h:selectOneMenu id="authorSelect" 
+                             required="true"  
+                             label="Author"
+                             value="#{bookController.authorIndex}" 
+                             converter="javax.faces.Integer">
+                <f:selectItem itemLabel="Please Select" noSelectionOption="true" />
+                <f:selectItems value="#{bookController.getAuthorsMapEntries()}"
+                               var="authorEntry"
+                               itemLabel="#{authorEntry.value.toString()}"
+                               itemValue="#{authorEntry.key}"/>
+            </h:selectOneMenu>            
+            <h:message for="authorSelect" style="color:red" />
+            <br/>
+            <h:commandButton action="#{bookController.saveOrUpdateBook(bookController.book)}" value="Commit"/>
+            <br/>
+        </h:form>      
+        <h:form>
+            <h2>New author</h2>
+            First name:
+            <h:inputText value="#{bookController.firstName}"/>
+            <br/>
+            Middle name:
+            <h:inputText value="#{bookController.middleName}"/>
+            <br/>
+            Last name:
+            <h:inputText value="#{bookController.lastName}"/>
+            <br/>
+            <h:commandButton action="#{bookController.addAuthor()}" value="Add author"/>
+        </h:form>
+        <h:form>
+            <h:commandLink action="#{bookController.updateBooks()}" value="Back"/>
+        </h:form>
+    </h:body>
+</html>
